@@ -11,9 +11,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <JokeComponent />
-      <div style={styles.counter}>
-        <h2>Общее количество запросов: {total}</h2>
-      </div>
+      
     </div>
   );
 };

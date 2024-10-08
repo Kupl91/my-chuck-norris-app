@@ -24,7 +24,7 @@ const JokeComponent: React.FC = () => {
         ['joke', query],
         () => fetchJoke(query as string),
         {
-            enabled: !!query && query.length >= 4,
+            enabled: !!query && query.length >= 3,
             onSuccess: () => {
                 dispatch(incrementCount());
             },
@@ -36,7 +36,7 @@ const JokeComponent: React.FC = () => {
     // Debounce механизм
     useEffect(() => {
         const handler = setTimeout(() => {
-            if (inputValue.length >= 4) {
+            if (inputValue.length >= 3) {
                 setQuery(inputValue);
             } else {
                 setQuery(null); // Очистить запрос, если меньше 4 символов
@@ -50,22 +50,22 @@ const JokeComponent: React.FC = () => {
 
     return (
         <div className="p-4 bg-background text-foreground">
-  <input
-    value={inputValue}
-    onChange={(e) => setInputValue(e.target.value)}
-    placeholder="Введите значение"
-    className="border p-2 mb-4 w-full text-black"
-  />
+            <input
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="Введите значение"
+                className="border p-2 mb-4 w-full text-black"
+            />
             {isLoading && <p>Загрузка...</p>}
             {error && <p>Ошибка: {error.message}</p>}
             {data && (
                 <div>
                     <p>Общее количество шуток: {data.total}</p>
-                    <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {data.result.map((joke: Joke) => (
-                            <p key={joke.id} className="mb-2">
+                            <div key={joke.id} className="border border-gray-300 p-4 rounded">
                                 {joke.value}
-                            </p>
+                            </div>
                         ))}
                     </div>
                 </div>
