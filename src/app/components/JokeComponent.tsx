@@ -16,7 +16,7 @@ const fetchJoke = async (query: string): Promise<JokeSearchResponse> => {
 const JokeComponent: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
     const dispatch = useDispatch();
-    const total = useSelector((state: RootState) => state.counter.total);
+    
     const [query, setQuery] = useState<string | null>(null);
     const totalRequests = useSelector((state: RootState) => state.counter.count);
 

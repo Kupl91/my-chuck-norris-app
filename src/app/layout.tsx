@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -14,14 +14,6 @@ interface LayoutProps {
 }
 
 const RootLayout: React.FC<LayoutProps> = ({ children }) => {
-  useEffect(() => {
-    // Экспонируем queryClient для доступа через стандартные DevTools
-    if (typeof window !== 'undefined') {
-      // @ts-ignore
-      window.queryClient = queryClient;
-    }
-  }, []);
-
   return (
     <html lang="ru">
       <body>
